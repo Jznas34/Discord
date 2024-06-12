@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from discord import Intents, Client, Message, Game 
 from responses import get_responses
+import random
 
 #STEP 1: LOAD TOKEN FROM SOMWHERE SAFE
 load_dotenv()
@@ -46,7 +47,7 @@ async def on_message(message: Message) -> None:
     user_message: str = message.content
     channel: str = str(message.channel)
 
-    print(f"User: {username} | Message: {user_message} | Channel: {channel}")
+    print(f"User: {username} | Message: {user_message} | Channel: {channel}")                           #Log the message, user and channel in the console
     await send_message(message, user_message)
 
 #STEP 6: RUN THE BOT

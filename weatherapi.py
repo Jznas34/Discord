@@ -2,7 +2,7 @@ import requests
 import json
 
 # Function to get the weather of a location
-# Returns a string with the temperature and the weather description
+# Returns a string with the temperature of the location 
 
 def get_weather(location: str) -> str:
     api_key = "e003735d401bfe99e96a7588765f99e5"
