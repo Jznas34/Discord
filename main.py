@@ -22,26 +22,26 @@ intents.message_content = True
 client: Client = Client(intents=intents)
 
 #STEP 3: MESSAGE FUNCTIONALITY 
-async def send_message(message: Message, user_message: str) -> None:    
+async def send_message(message: Message, user_message: str) -> None:        #asynchronous function, which means that the function can run in the background while the rest of the code runs
     if not user_message:
         print("Fehler")
         return
     
-    if is_private := user_message[0] == "?":        #Check if the message is meant to be sent privately (if the first character is a question mark)
+    if is_private := user_message[0] == "!":        #Check if the message is meant to be sent privately (if the first character is "!" then the message is meant to be sent privately)
         user_message = user_message[1:]
     
     try:
         response: str = get_responses(user_message)     
-        await message.author.send(response) if is_private else message.channel.send(response)   #Send the response privately if the message is meant to be sent privately
+        await message.author.send(response) if is_private else await message.channel.send(response)   #Send the response privately if the message is meant to be sent privately
     except Exception as e:
         print(e) 
 
-#STEP 4: EVENT HANDLERS: STARTUP
+#STEP 4: EVENT HANDLER: STARTUP
 @client.event
 async def on_ready() -> None:
     print(f'{client.user} has connected to Discord!')
 
-#STEP 5: EVENT HANDLERS: MESSAGE
+#STEP 5: EVENT HANDLER: MESSAGE
 @client.event
 async def on_message(message: Message) -> None:
     if message.author == client.user:
@@ -54,4 +54,9 @@ async def on_message(message: Message) -> None:
     print(f"User: {username} | Message: {user_message} | Channel: {channel}")
     await send_message(message, user_message)
 
-    
+#STEP 6: RUN THE BOT
+def main() -> None:
+    client.run(token=TOKEN)
+
+if __name__ == "__main__":
+    main()

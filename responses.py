@@ -10,10 +10,10 @@ def get_responses(user_input : str) -> str:
         return f"Du hast eine {randint(1, 6)} gewürfelt!"
     
     elif "/help" in input:
-        return "Hier eine Liste aller Befehle: \n /Hallo \n /Würfel"
+        return "Wenn du direkt vor deine Nachricht ! schreibst, wird dir die Antwort per DM geschickt. Hier eine Liste aller Befehle: \n /hallo \n /würfeln"
 
     
-    
+
     else:
         return choice([
             "Diesen Befehl kenne ich nicht. Mit /help bekommst du eine Liste aller Befehle",
