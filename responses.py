@@ -1,18 +1,21 @@
 from random import choice, randint 
+from weatherapi import get_weather
 
 def get_responses(user_input : str) -> str:
-    input: str = user_input.lower()   
+    command = user_input.split()[0].lower()
 
-    if input == "/hallo":
+    if command == "/hallo":
         return "Hallo! Wie kann ich dir helfen?"
     
-    elif "/würfeln" in input:
+    elif "/würfeln" in command:
         return f"Du hast eine {randint(1, 6)} gewürfelt!"
     
-    elif "/help" in input:
-        return "Wenn du direkt vor deine Nachricht ! schreibst, wird dir die Antwort per DM geschickt. Hier eine Liste aller Befehle: \n /hallo \n /würfeln"
-
+    elif "/help" in command:
+        return "Hier ist eine Liste aller Befehle:\n /help \n /meddl \n /wetter *Stadt* \n /würfeln \n ! für DM -> !/help."
     
+    elif "/wetter" in command:
+        location = ' '.join(user_input.split()[1:])
+        return get_weather(location)
 
     else:
         return choice([

@@ -1,14 +1,8 @@
-#Hallo test test
-#git add 
-#git commit -m "msg"
-#git 
-
-
 #STEP 0: IMPORTS
 from typing import Final 
 import os
 from dotenv import load_dotenv
-from discord import Intents, Client, Message
+from discord import Intents, Client, Message, Game 
 from responses import get_responses
 
 #STEP 1: LOAD TOKEN FROM SOMWHERE SAFE
@@ -35,11 +29,12 @@ async def send_message(message: Message, user_message: str) -> None:        #asy
         await message.author.send(response) if is_private else await message.channel.send(response)   #Send the response privately if the message is meant to be sent privately
     except Exception as e:
         print(e) 
-
+    
 #STEP 4: EVENT HANDLER: STARTUP
 @client.event
 async def on_ready() -> None:
-    print(f'{client.user} has connected to Discord!')
+    print(f'{client.user} ist jetzt dabei!')
+    await client.change_presence(activity=Game(name=f"Auf {len(client.guilds)} Servern mit"))           #Change the status of the bot (playing on x servers)
 
 #STEP 5: EVENT HANDLER: MESSAGE
 @client.event
