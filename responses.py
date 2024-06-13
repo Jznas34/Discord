@@ -3,6 +3,25 @@ from weatherapi import get_weather
 from meddler import drache_zitat
 
 def get_responses(user_input : str) -> str:         #Function that returns a response based on the user input
+
+    """
+    Diese Funktion nimmt eine Benutzereingabe entgegen und gibt eine entsprechende Antwort zurück.
+
+    Parameters:
+    user_input (str): Die Eingabe des Benutzers als String.
+
+    Returns:
+    str: Die Antwort der Funktion auf die Benutzereingabe. Die Antwort variiert je nach Befehl in der Benutzereingabe.
+
+    Die Funktion unterstützt die folgenden Befehle:
+    - "/hallo": Gibt einen Begrüßungstext zurück.
+    - "/würfeln": Simuliert das Würfeln eines Würfels und gibt das Ergebnis zurück.
+    - "/help": Gibt eine Liste aller unterstützten Befehle zurück.
+    - "/wetter 'Stadt'": Gibt das Wetter für die angegebene Stadt zurück.
+    - "/meddl": Gibt ein zufälliges Zitat zurück.
+    Wenn die Benutzereingabe keinen der unterstützten Befehle enthält, gibt die Funktion eine Standardnachricht zurück, die den Benutzer auf den "/help"-Befehl hinweist.
+    """
+
     command = user_input.split()[0].lower()
 
 # Itereate over the messages and return the appropriate response
